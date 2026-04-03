@@ -13,21 +13,25 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                bat 'mvn clean compile'
-            }
+    steps {
+        dir('my-maven-project') {
+            bat 'mvn clean compile'
         }
+    }
+}
 
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
+stage('Test') {
+    steps {
+        dir('my-maven-project') {
+            bat 'mvn test'
         }
+    }
+}
 
-        stage('Package') {
-            steps {
-                bat 'mvn package'
-            }
+stage('Package') {
+    steps {
+        dir('my-maven-project') {
+            bat 'mvn package'
         }
     }
 }

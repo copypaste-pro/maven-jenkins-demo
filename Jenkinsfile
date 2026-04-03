@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Clone') {
             steps {
                 git branch: 'main', url: 'https://github.com/copypaste-pro/maven-jenkins-demo.git'
@@ -13,25 +14,27 @@ pipeline {
         }
 
         stage('Build') {
-    steps {
-        dir('my-maven-project') {
-            bat 'mvn clean compile'
+            steps {
+                dir('my-maven-project') {
+                    bat 'mvn clean compile'
+                }
+            }
         }
-    }
-}
 
-stage('Test') {
-    steps {
-        dir('my-maven-project') {
-            bat 'mvn test'
+        stage('Test') {
+            steps {
+                dir('my-maven-project') {
+                    bat 'mvn test'
+                }
+            }
         }
-    }
-}
 
-stage('Package') {
-    steps {
-        dir('my-maven-project') {
-            bat 'mvn package'
+        stage('Package') {
+            steps {
+                dir('my-maven-project') {
+                    bat 'mvn package'
+                }
+            }
         }
     }
 }
